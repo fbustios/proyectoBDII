@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Salón de Uñas</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; text-align: center; }
+        header { background: #f48fb1; color: white; padding: 2rem; }
+        section { padding: 2rem; }
+        .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; max-width: 600px; margin: auto; }
+        .day-btn { padding: 1rem; border: none; border-radius: 6px; font-size: 1rem; cursor: pointer; }
+        .available { background: #f48fb1; color: white; font-weight: bold; }
+        .unavailable { background: #eee; color: #aaa; cursor: not-allowed; }
+        .times button { margin: 0.25rem; padding: 0.5rem 1rem; background: #f48fb1; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        .times button:hover { background: #ec407a; }
+    </style>
+</head>
+<body>
+<header>
+    <h1>💅 Bienvenida a Nuestro Salón de Uñas</h1>
+    <p>Reserva tu cita fácilmente</p>
+</header>
+
+<section>
+    <h2>📅 Selecciona un Día</h2>
+
+    <div class="calendar">
+        <!-- Generar los 29 días -->
+        <button th:each="day : ${days}"
+                th:text="${day.number}"
+                th:class="'day-btn ' + (${day.available} ? 'available' : 'unavailable')"
+                th:disabled="${!day.available}"
+                th:onclick="${day.available} ? 'showTimes(\\'' + ${day.date} + )' : ''">
+        </button>
+    </div>
+
+    <div id="times" class="times" style="margin-top: 2rem;"></div>
+</section>
+
+<script>
+    // Simulación de horarios disponibles (el backend puede generar JSON en vez de hardcodear aquí)
+    const availability = {
+        "2025-09-10": ["10:00 AM", "1:00 PM", "4:00 PM"],
+        "2025-09-12": ["11:00 AM", "3:30 PM"],
+        "2025-09-15": ["9:30 AM", "2:00 PM"]
+    };
+
+    function showTimes(date) {
+        const timesDiv = document.getElementById("times");
+        timesDiv.innerHTML = "";
+        if (availability[date]) {
+            availability[date].forEach(time => {
+                const btn = document.createElement("button");
+                btn.textContent = time;
+                btn.onclick = () => alert("Reservaste " + date + " a las " + time);
+                timesDiv.appendChild(btn);
+            });
+        } else {
+            timesDiv.innerHTML = "<p>No hay citas disponibles para este día.</p>";
+        }
+    }
+</script>
+</body>
+</html>
