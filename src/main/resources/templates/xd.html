@@ -15,62 +15,68 @@
 <header class="w-full px-6 py-5 flex items-center justify-between">
     <h1 class="text-2xl font-bold tracking-wide">Aqua <span class="text-green-300">Nails</span></h1>
     <nav class="space-x-6 text-sm font-medium">
-        <a th:href="@{/catalog}" class="hover:text-green-300">Servicios</a>
-        <a href="#gallery" class="hover:text-green-300">Galería</a>
-        <a th:href="@{/signup}" class="hover:text-green-300">Sign Up</a>
+        <a th:href="@{home/catalog}" class="hover:text-green-300">Servicios</a>
+        <a th:href="@{/signup}" class="hover:text-green-300">Nosotras</a>
         <a th:href="@{/login}" class="hover:text-green-300">Login</a>
     </nav>
 </header>
 
-<!-- Hero -->
-<section class="px-6 py-16 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
-    <div class="flex-1">
-        <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
+<!-- Hero con fondo dinámico -->
+<section class="relative w-full h-96 flex flex-col md:flex-row items-center justify-center text-center gap-10 overflow-hidden">
+
+    <!-- Fondo con imágenes en loop -->
+    <div id="bg-slideshow" class="absolute inset-0 -z-10 bg-cover bg-center transition-all duration-1000"></div>
+
+    <div class="flex-1 relative z-10 px-6">
+        <h2 class="text-4xl md:text-5xl font-extrabold leading-tight text-white drop-shadow-lg">
             Uñas que <span class="text-green-300">inspiran</span>
         </h2>
-        <p class="mt-4 text-gray-600 max-w-xl">
+        <p class="mt-4 text-gray-100 max-w-xl mx-auto">
             Diseño moderno, limpieza profesional y atención personalizada. Reserva tu cita y deja que tus manos hablen por ti.
         </p>
 
-        <div class="mt-6 flex items-center gap-4">
+        <div class="mt-6 flex items-center justify-center gap-4">
             <a th:href="@{/home/calendar}" class="inline-block px-6 py-3 rounded-lg shadow-sm glass font-medium">Reservar cita</a>
-            <a href="#gallery" class="text-sm font-medium hover:underline">Ver galería</a>
+            <a href="#gallery" class="text-sm font-medium text-white hover:underline">Ver galería</a>
         </div>
     </div>
-
-
 </section>
+
 
 <!-- Servicios -->
 <section id="services" class="py-12 bg-white">
     <div class="max-w-6xl mx-auto px-6">
         <h3 class="text-2xl font-semibold mb-6">Catalogo</h3>
-        <form th:action="@{/home/catalog}" method="get">
-            <button type="submit" class="px-8 py-3 rounded-lg bg-green-300 text-white font-medium">Visitar</button>
-        </form>
-    </div>
-</section>
-
-<!-- Galería -->
-<section id="gallery" class="py-12">
-    <div class="max-w-6xl mx-auto px-6">
-        <h3 class="text-2xl font-semibold mb-6">Galería</h3>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img th:src="@{/images/nivel5-5.jpeg}" alt="Gallery 1" class="w-full h-40 object-cover rounded-lg shadow-sm" />
-            <img th:src="@{/images/nivel5-1.jpeg}" alt="Gallery 2" class="w-full h-40 object-cover rounded-lg shadow-sm" />
-            <img th:src="@{/images/nivel5-3.jpeg}" alt="Gallery 3" class="w-full h-40 object-cover rounded-lg shadow-sm" />
-            <img th:src="@{/images/nivel5-2.jpeg}" alt="Gallery 4" class="w-full h-40 object-cover rounded-lg shadow-sm" />
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <form th:action="@{/home/catalog}" method="get">
+                <button type="submit" class="px-8 py-3 rounded-lg bg-green-300 text-white font-medium">Visitar</button>
+            </form>
         </div>
     </div>
 </section>
 
-<!-- About -->
-<section id="about" class="py-12 bg-white">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-        <h3 class="text-2xl font-semibold">Nosotras</h3>
-        <p class="mt-4 text-gray-600">Somos un equipo de profesionales apasionadas por el detalle y la estética. Prioritamos higiene, comodidad y resultados que te encanten.</p>
+<!-- Galería
+<section id="gallery" class="py-12">
+    <div class="max-w-6xl mx-auto px-6">
+        <h3 class="text-2xl font-semibold mb-6">Galería</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <img src="http://localhost:8080/nivel5-1.jpeg" alt="Gallery 1" class="w-full h-40 object-cover rounded-lg shadow-sm" />
+            <img th:src="@{/nivel5-1.jpeg}" alt="Gallery 2" class="w-full h-40 object-cover rounded-lg shadow-sm" />
+            <img th:src="@{/nivel5-3.jpeg}" alt="Gallery 3" class="w-full h-40 object-cover rounded-lg shadow-sm" />
+            <img th:src="@{/nivel5-2.jpeg}" alt="Gallery 4" class="w-full h-40 object-cover rounded-lg shadow-sm" />
+        </div>
     </div>
 </section>
+-->
+<!-- About-->
+<section id="about" class="py-12 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <h3 class="text-2xl font-semibold">Mensaje x</h3>
+        <p class="mt-4 text-gray-600">varas.</p>
+    </div>
+</section>
+
+
 
 
 
@@ -84,5 +90,25 @@
         </div>
     </div>
 </footer>
+<script>
+    // Array de imágenes para el loop
+    const images = [
+        "/nive5-4.jpeg",
+        "/nivel5-1.jpeg",
+        "/nivel5-2.jpeg",
+        "/nivel5-3.jpeg"
+    ];
+
+    let index = 0;
+    const bg = document.getElementById("bg-slideshow");
+
+    function changeBackground() {
+        bg.style.backgroundImage = `url('${images[index]}')`;
+        index = (index + 1) % images.length;
+    }
+
+    changeBackground();
+    setInterval(changeBackground, 5000);
+</script>
 </body>
 </html>

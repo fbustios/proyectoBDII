@@ -23,19 +23,15 @@ public final class User {
     private String rol;
 
     @Column
-    private String telefono;
-
-    @Column
     private String correo_electronico;
 
     @Column
     private String password_hash;
 
-    User(final String user, final String rol, final String telefono,
+    User(final String user, final String rol,
              final String correo_electronico, final String password_hash) {
         this.username = user;
         this.rol = rol;
-        this.telefono = telefono;
         this.correo_electronico = correo_electronico;
         this.password_hash = password_hash;
 

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registro — Aqua Nails</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(6px); }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans flex items-center justify-center h-screen">
+
+<!-- Sign Up Form -->
+<div class="w-full max-w-md p-8 glass rounded-2xl shadow-lg">
+    <h2 class="text-3xl font-extrabold mb-6 text-center">Crear <span class="text-green-300">Cuenta</span></h2>
+
+
+    <form th:action="@{/signup}" th:object="${signUpDTO}" method="post" class="space-y-4">
+        <!-- Usuario -->
+        <div>
+            <label for="username" class="block text-sm font-medium text-gray-700">Usuario</label>
+            <input type="text" name="username" th:field="*{username}" id="username" required
+                   class="mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-300 focus:border-green-300 shadow-sm">
+        </div>
+
+        <!-- Email -->
+        <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Correo</label>
+            <input type="email" name="email" th:field="*{email}" id="email" required
+                   class="mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-300 focus:border-green-300 shadow-sm">
+            <p th:if="${#fields.hasErrors('email')}"
+               th:errors="*{email}"
+               class="text-red-500 text-sm"></p>
+        </div>
+
+
+        <!-- Contraseña -->
+        <div>
+            <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+            <input type="password" name="password" th:field="*{password}" id="password" required
+                   class="mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-300 focus:border-green-300 shadow-sm">
+        </div>
+
+        <!-- Confirmación contraseña -->
+        <div>
+            <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+            <input type="password" name="confirmPassword" th:field="*{confirmPassword}" id="confirmPassword" required
+                   class="mt-1 block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-green-300 focus:border-green-300 shadow-sm">
+            <p th:if="${#fields.hasErrors('confirmPassword')}"
+               th:errors="*{confirmPassword}"
+               class="text-red-500 text-sm"></p>
+        </div>
+
+        <!-- Botón Sign Up -->
+        <div>
+                <button type="submit"
+                        class="w-full px-4 py-2 bg-green-300 text-white rounded-lg font-medium shadow hover:bg-green-400 transition">
+                    Registrarse
+                </button>
+
+        </div>
+
+        <!-- Link al Login -->
+        <div class="text-center text-sm">
+            <span class="text-gray-600">¿Ya tienes cuenta?</span>
+            <a th:href="@{/login}" class="text-green-300 hover:underline">Inicia sesión</a>
+        </div>
+    </form>
+</div>
+
+
+
+</body>
+</html>

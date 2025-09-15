@@ -1,4 +1,4 @@
 package com.example.demo.Models;
 
-public class Cita {
+public final class Cita {
 }
