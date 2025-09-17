@@ -28,7 +28,7 @@ public final class User {
     @Column
     private String password_hash;
 
-    User(final String user, final String rol,
+    public User(final String user, final String rol,
              final String correo_electronico, final String password_hash) {
         this.username = user;
         this.rol = rol;

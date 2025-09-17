@@ -1,8 +1,13 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.DTOS.SignUpDTO;
+import com.example.demo.Models.User;
 import com.example.demo.Repositories.UserRepository;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,6 +25,11 @@ public final class SignUpController {
         return "SignUp";
     }
 
+
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder(); //igual mover al user service
+    }
+
     @PostMapping("/signup")
     public String registerUser(@Valid @ModelAttribute SignUpDTO signUpDTO, BindingResult bindingResult) {
 
@@ -29,6 +39,8 @@ public final class SignUpController {
         if (bindingResult.hasErrors()) {
             return "redirect:/signup";
         }
+        User usuario = new User(signUpDTO.getUsername(),"CLIENT",signUpDTO.getEmail(), passwordEncoder().encode(signUpDTO.getPassword()));  //mover a un user service
+
         return "redirect:/home";
     }
 }
