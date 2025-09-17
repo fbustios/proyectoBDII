@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elija un servicio a reservar — Aqua Nails</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+<header class="w-full px-6 py-5 flex items-center justify-between">
+    <h1 class="text-2xl font-bold tracking-wide">Aqua <span class="text-green-300">Nails</span></h1>
+    <nav class="space-x-6 text-sm font-medium">
+        <a href="/home" class="hover:text-green-300">Home</a>
+    </nav>
+</header>
+
+<section id="services" class="py-12 bg-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <h3 class="text-2xl font-semibold mb-6">Catálogo de Servicios</h3>
+
+        <!-- Fila 1 -->
+        <div class="mb-8">
+            <h4 class="text-xl font-semibold mb-4">Gel X</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Servicio 1 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 1</h5>
+                        <p class="text-gray-600 mb-2">Nail art básico: esmaltado liso, escarchado, cat eye o chrome.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$15 000</p>
+                    </div>
+                    <a href="/reservar?id=1" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 2 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 2</h5>
+                        <p class="text-gray-600 mb-2">Nail art simple: no incluye airbrush ni relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$17 000</p>
+                    </div>
+                    <a href="/reservar?id=2" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 3 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 3</h5>
+                        <p class="text-gray-600 mb-2">Nail art avanzado I: incluye solo airbrush o solo relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$19 000</p>
+                    </div>
+                    <a href="/reservar?id=3" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 4 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 4</h5>
+                        <p class="text-gray-600 mb-2">Nail art avanzado II: incluye airbrush y/o relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$22 000</p>
+                    </div>
+                    <a href="/reservar?id=4" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 5 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 5</h5>
+                        <p class="text-gray-600 mb-2">Nail art detallado: incluye airbrush y relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$24 000</p>
+                    </div>
+                    <a href="/reservar?id=5" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fila 2 -->
+        <div class="mb-8">
+            <h4 class="text-xl font-semibold mb-4">Semi permanente</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Servicio 6 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 1</h5>
+                        <p class="text-gray-600 mb-2">Nail art básico: esmaltado liso, escarchado, cat eye o chrome.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$10 000</p>
+                    </div>
+                    <a href="/reservar?id=1" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 7 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 2</h5>
+                        <p class="text-gray-600 mb-2">Nail art simple: no incluye airbrush ni relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$12 000</p>
+                    </div>
+                    <a href="/reservar?id=7" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 8 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 3</h5>
+                        <p class="text-gray-600 mb-2">Nail art avanzado I: incluye solo airbrush o solo relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$14 000</p>
+                    </div>
+                    <a href="/reservar?id=8" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 9 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 4</h5>
+                        <p class="text-gray-600 mb-2">Nail art avanzado II: incluye airbrush y/o relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$17 000</p>
+                    </div>
+                    <a href="/reservar?id=9" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 10 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 5</h5>
+                        <p class="text-gray-600 mb-2">Nail art detallado: incluye airbrush y relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$19 000</p>
+                    </div>
+                    <a href="/reservar?id=10" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fila 3 -->
+        <div class="mb-8">
+            <h4 class="text-xl font-semibold mb-4">Overlay</h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Servicio 11 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 1</h5>
+                        <p class="text-gray-600 mb-2">Nail art básico: esmaltado liso, escarchado, cat eye o chrome.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$14 000</p>
+                    </div>
+                    <a href="/reservar?id=11" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 12 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 2</h5>
+                        <p class="text-gray-600 mb-2">Nail art simple: no incluye airbrush ni relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$16 000</p>
+                    </div>
+                    <a href="/reservar?id=12" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 13 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 3</h5>
+                        <p class="text-gray-600 mb-2">Nail art avanzado I: incluye solo airbrush o solo relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$18 000</p>
+                    </div>
+                    <a href="/reservar?id=13" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 14 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 4</h5>
+                        <p class="text-gray-600 mb-2">Nail art avanzado II: incluye airbrush y/o relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$21 000</p>
+                    </div>
+                    <a href="/reservar?id=14" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+                <!-- Servicio 15 -->
+                <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+                    <div>
+                        <h5 class="text-lg font-semibold mb-2">Nivel 5</h5>
+                        <p class="text-gray-600 mb-2">Nail art detallado: incluye airbrush y relieves.</p>
+                        <p class="text-lg font-bold text-green-300 mb-4">$23 000</p>
+                    </div>
+                    <a href="/reservar?id=15" class="mt-4 px-4 py-2 bg-green-300 text-white text-center rounded-lg hover:bg-green-400 transition">Reservar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="py-8 bg-gray-100">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+        <p class="text-sm">© 2025 Aqua Nails. Todos los derechos reservados.</p>
+        <div class="space-x-4 text-sm">
+            <a href="/terminos">Términos</a>
+            <a href="/privacidad">Privacidad</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Agregar Cita — Aqua Nails Admin</title>
+    <title>Citas Disponibles — Aqua Nails Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(6px); }
@@ -20,30 +20,30 @@
     </nav>
 </header>
 
-<!-- Formulario -->
-<section class="px-6 py-16 max-w-2xl mx-auto">
-    <h2 class="text-3xl font-extrabold mb-6 text-center">Agregar Nueva Cita</h2>
+<!-- Sección de citas -->
+<section class="px-6 py-16 max-w-6xl mx-auto">
+    <h2 class="text-3xl font-extrabold mb-8 text-center">Citas Disponibles</h2>
 
-    <form th:action="@{/admin/agregarCitas}" method="post" class="bg-white p-8 rounded-2xl shadow-lg flex flex-col gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-        <!-- Fecha Inicio -->
-        <div>
-            <label for="fechaInicio" class="block text-gray-700 font-medium mb-2">Fecha Inicio</label>
-            <input type="datetime-local" name="fechaInicio" id="fechaInicio"
-                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" required>
+        <!-- Recorremos la lista de citas del backend -->
+        <div th:each="cita : ${citasDisponibles}" class="bg-white rounded-2xl shadow-md p-6 flex flex-col justify-between">
+            <div>
+                <p class="text-gray-700 mb-2">
+                    <span th:text="${cita.getId()}" class="font-semibold">I:</span>
+                </p>
+                <p class="text-gray-700 mb-2">
+                    <span class="font-semibold">Inicio:</span>
+                    <span th:text="${cita.fecha_inicio.format(T(java.time.format.DateTimeFormatter).ofPattern('dd/MM/yyyy HH:mm'))}"></span>
+                </p>
+                <p class="text-gray-700 mb-2">
+                    <span class="font-semibold">Fin:</span>
+                    <span th:text="${cita.fecha_fin.format(T(java.time.format.DateTimeFormatter).ofPattern('dd/MM/yyyy HH:mm'))}"></span>
+                </p>
+            </div>
         </div>
 
-        <!-- Fecha Fin -->
-        <div>
-            <label for="fechaFin" class="block text-gray-700 font-medium mb-2">Fecha Fin</label>
-            <input type="datetime-local" name="fechaFin" id="fechaFin"
-                   class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-300" required>
-        </div>
-
-        <button type="submit" class="mt-4 px-6 py-3 bg-pink-500 text-white font-medium rounded-lg shadow hover:bg-pink-600 transition">
-            Agregar Cita
-        </button>
-    </form>
+    </div>
 </section>
 
 <!-- Footer -->

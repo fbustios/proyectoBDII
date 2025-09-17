@@ -3,25 +3,20 @@ package com.example.demo.Models;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 
+@Setter
+@Getter
 public class Dia {
-    private int numero;
+    private LocalDateTime fecha;
+
     private boolean disponible;
 
-    public Dia(int numero, boolean disponible) {
-        this.numero = numero;
+    public Dia(LocalDateTime fecha, boolean disponible) {
+        this.fecha = fecha;
         this.disponible = disponible;
     }
-    public int getNumero() {
-        return numero;
-    }
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }
-    public boolean isDisponible() {
-        return disponible;
-    }
-    public void setDisponible(boolean disponible) {
-        this.disponible = disponible;
+    public int getDia(){
+        return fecha.getDayOfMonth();
     }
 }

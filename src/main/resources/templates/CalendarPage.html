@@ -40,14 +40,15 @@
         <div class="grid grid-cols-7 gap-2">
             <!-- Cada celda representa un día -->
             <div th:each="dia : ${diasMes}">
-                <form th:action="@{/reservar}">
-                    <button th:text="${dia.numero}"
+                <form th:action="@{/home/citasDisponibles}">
+                    <input type="hidden" th:name="dia" th:value="${dia.getDia()}" />
+                    <button th:text="${dia.getDia()}"
                             th:classappend="${dia.disponible}
                         ? 'bg-green-300 text-white hover:bg-green-400'
                         : 'bg-gray-300 text-gray-600 cursor-not-allowed'"
                             th:disabled="${!dia.disponible}"
                             name="diaSeleccionado"
-                            th:value="${dia.numero}"
+                            th:value="${dia.getDia()}"
                             class="w-full h-12 flex items-center justify-center rounded-lg font-medium shadow-sm transition">
                     </button>
                 </form>

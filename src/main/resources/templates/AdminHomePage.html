@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin — Aqua Nails</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(6px); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+<!-- Navbar -->
+<header class="w-full px-6 py-5 flex items-center justify-between bg-white shadow">
+    <h1 class="text-2xl font-bold tracking-wide">Aqua <span class="text-green-300">Nails Admin</span></h1>
+    <nav class="space-x-6 text-sm font-medium">
+        <a href="/" class="hover:text-green-300">Inicio</a>
+        <a href="/admin" class="hover:text-green-300">Panel</a>
+        <a href="/logout" class="hover:text-green-300">Salir</a>
+    </nav>
+</header>
+
+<!-- Hero Panel -->
+<section class="px-6 py-16 max-w-6xl mx-auto flex flex-col items-center gap-10">
+    <h2 class="text-4xl font-extrabold leading-tight text-center">
+        Panel de <span class="text-green-300">Administrador</span>
+    </h2>
+    <p class="mt-4 text-gray-600 text-center max-w-xl">
+        Gestiona las citas de los clientes de manera rápida y sencilla.
+        Aquí puedes agregar citas, ver las ya agendadas y confirmar las pendientes.
+    </p>
+
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
+        <!-- Agregar Cita -->
+        <a href="/admin/agregarCitas" class="flex flex-col justify-center items-center p-6 bg-pink-500 text-white rounded-2xl shadow-lg hover:bg-pink-600 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+            </svg>
+            <span class="text-lg font-semibold">Agregar Cita</span>
+        </a>
+
+        <!-- Mostrar Citas Agendadas -->
+        <a href="/admin/citasAgendadas" class="flex flex-col justify-center items-center p-6 bg-green-300 text-white rounded-2xl shadow-lg hover:bg-green-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2h6v2m2-12H7v12h10V5z"/>
+            </svg>
+            <span class="text-lg font-semibold">Citas Agendadas</span>
+        </a>
+
+        <!-- Mostrar Citas Pendientes -->
+        <a href="/admin/citasPendientes" class="flex flex-col justify-center items-center p-6 bg-yellow-400 text-white rounded-2xl shadow-lg hover:bg-yellow-500 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+            <span class="text-lg font-semibold">Citas Pendientes</span>
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-8 bg-gray-100 mt-16">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+        <p class="text-sm">© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Aqua Nails. Todos los derechos reservados.</p>
+        <div class="space-x-4 text-sm">
+            <a href="/terminos">Términos</a>
+            <a href="/privacidad">Privacidad</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
