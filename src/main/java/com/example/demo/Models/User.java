@@ -1,9 +1,6 @@
 package com.example.demo.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,6 +11,7 @@ import lombok.Setter;
 @Setter
 public final class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -22,19 +20,18 @@ public final class User {
     @Column
     private String rol;
 
-    @Column
-    private String correo_electronico;
+    @Column(name = "correo_electronico")
+    private String email;
 
     @Column
     private String password_hash;
 
     public User(final String user, final String rol,
-             final String correo_electronico, final String password_hash) {
+                final String email, final String password_hash) {
         this.username = user;
         this.rol = rol;
-        this.correo_electronico = correo_electronico;
+        this.email = email;
         this.password_hash = password_hash;
-
     }
 
     public User() {

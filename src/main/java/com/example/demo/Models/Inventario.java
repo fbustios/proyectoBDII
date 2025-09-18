@@ -1,9 +1,6 @@
 package com.example.demo.Models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +10,7 @@ import lombok.Setter;
 @Setter
 public final class Inventario {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -23,7 +21,7 @@ public final class Inventario {
 
     public Inventario() {}
 
-    Inventario(final String producto, final int cantidad_ml) {
+    public Inventario(final String producto, final int cantidad_ml) {
         this.producto = producto;
         this.cantidad_ml = cantidad_ml;
     }

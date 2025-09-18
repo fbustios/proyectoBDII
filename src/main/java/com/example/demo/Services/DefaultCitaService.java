@@ -2,7 +2,6 @@ package com.example.demo.Services;
 
 import com.example.demo.Models.Cita;
 import com.example.demo.Models.Dia;
-import com.example.demo.Repositories.CitaRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +14,7 @@ import java.util.List;
 public class DefaultCitaService implements CitaService{
     CitaRepository citaRepo;
 
-    DefaultCitaService(CitaRepository citaRepo){
+    DefaultCitaService(final CitaRepository citaRepo){
         this.citaRepo = citaRepo;
     }
 
@@ -26,16 +25,21 @@ public class DefaultCitaService implements CitaService{
 
     @Override
     public List<Cita> getAvailableAppointments() {
-        return citaRepo.getCitaByConfirmadaIsFalseAndPendienteIsFalse();
+        return citaRepo.getFreeAppointments();
     }
 
     @Override
-    public List<Cita> getConfirmedAndPendingAppointments() {
-        return citaRepo.getCitaByConfirmadaIsTrueAndPendienteIsTrue();
+    public List<Cita> getToDoAppointments() {
+        return citaRepo.getToDoAppointments();
     }
 
     @Override
-    public List<Cita> getAppointmentsByDate(LocalDateTime date) {
+    public List<Cita> getUnresolvedAppointments() {
+        return citaRepo.getUnresolvedAppointments();
+    }
+
+    @Override
+    public List<Cita> getAppointmentsByDate(final LocalDateTime date) {
         int year = date.getYear();
         int month = date.getMonthValue();
         int day = date.getDayOfMonth();
@@ -62,8 +66,8 @@ public class DefaultCitaService implements CitaService{
 
     @Override
     @Transactional
-    public void bookAppointment(String username, int service_id, int date_id) {
-
+    public void bookAppointment(final String username, final int service_id, final int date_id) {
+        System.out.println(username + service_id + date_id);
     }
 
 
@@ -75,10 +79,7 @@ public class DefaultCitaService implements CitaService{
             System.out.println("hola");
             return;
         }
-        Cita newCita = new Cita(fechaInicio, fechaFin);
-        System.out.println(newCita.toString());
-        citaRepo.save(newCita);
-
+        if(citaRepo.createAppointment(fechaInicio, fechaFin) == 1) System.out.println("bien");;
     }
 
     @Override
@@ -86,4 +87,6 @@ public class DefaultCitaService implements CitaService{
     public void updateAppointmentDate() {
 
     }
+
+    private void acceptAppointment(){}
 }

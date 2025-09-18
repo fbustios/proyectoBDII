@@ -3,6 +3,7 @@ package com.example.demo.Controllers;
 import com.example.demo.DTOS.SignUpDTO;
 import com.example.demo.Models.User;
 import com.example.demo.Repositories.UserRepository;
+import com.example.demo.Services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public final class SignUpController {
+    UserService userService;
+
+    SignUpController(final UserService service){
+        this.userService = service;
+    }
+
 
     @GetMapping("/signup")
     public String showSignUpForm(Model model) {
@@ -39,8 +46,12 @@ public final class SignUpController {
         if (bindingResult.hasErrors()) {
             return "redirect:/signup";
         }
-        User usuario = new User(signUpDTO.getUsername(),"CLIENT",signUpDTO.getEmail(), passwordEncoder().encode(signUpDTO.getPassword()));  //mover a un user service
 
-        return "redirect:/home";
+        if(userService.createUser(signUpDTO.getUsername(),signUpDTO.getEmail(),signUpDTO.getPassword()) == 1){
+            System.out.println("bien");
+            return "redirect:/home";
+        }
+
+        return "redirect:/signup";
     }
 }

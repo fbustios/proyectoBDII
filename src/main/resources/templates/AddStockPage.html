@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Agregar Stock — Aqua Nails</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+
+<!-- Navbar -->
+<header class="w-full px-6 py-5 flex items-center justify-between bg-white shadow">
+    <h1 class="text-2xl font-bold tracking-wide">Aqua <span class="text-green-300">Nails</span></h1>
+    <nav class="space-x-6 text-sm font-medium">
+    </nav>
+</header>
+
+<!-- Formulario agregar stock -->
+<section class="py-12">
+    <div class="max-w-lg mx-auto bg-white shadow-lg rounded-lg p-8">
+        <h2 class="text-2xl font-bold mb-6 text-center">Agregar Stock</h2>
+
+
+        <form th:action="@{/admin/agregarStock}" th:object="${inventarioDTO}" method="post" class="space-y-6">
+
+            <!-- Nombre del producto -->
+            <div>
+                <label for="producto" class="block text-sm font-medium text-gray-700">Nombre del producto</label>
+                <input type="text" id="producto" th:field="*{producto}"
+                       class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:ring-green-300 focus:border-green-300"
+                       placeholder="Ej. Esmalte rojo" required>
+            </div>
+
+            <!-- Cantidad -->
+            <div>
+                <label for="cantidad" class="block text-sm font-medium text-gray-700">Cantidad (ml)</label>
+                <input type="number" id="cantidad" th:field="*{cantidad_ml}" min="1"
+                       class="mt-1 block w-full border border-gray-300 rounded-lg shadow-sm p-2 focus:ring-green-300 focus:border-green-300"
+                       placeholder="Ej. 50" required>
+            </div>
+
+            <!-- Botones -->
+            <div class="flex justify-between items-center">
+                <a href="/home/stock"
+                   class="px-5 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">Cancelar</a>
+
+                <button type="submit"
+                        class="px-5 py-2 bg-green-300 text-white font-medium rounded-lg shadow hover:bg-green-400 transition">
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-8 bg-gray-100 mt-12">
+    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
+        <p class="text-sm">© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Aqua Nails. Todos los derechos reservados.</p>
+        <div class="space-x-4 text-sm">
+            <a th:href="@{/terminos}">Términos</a>
+            <a th:href="@{/privacidad}">Privacidad</a>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

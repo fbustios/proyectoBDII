@@ -1,0 +1,26 @@
+package com.example.demo.Services;
+
+import com.example.demo.Models.Cita;
+import com.example.demo.Models.User;
+import com.example.demo.Repositories.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class BcryptUserService implements UserService{
+    UserRepository userRepo;
+
+    BcryptUserService(UserRepository userRepo){
+        this.userRepo = userRepo;
+    }
+
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
+
+    @Override
+    public Integer createUser(String username, String email, String password) {
+        return userRepo.createUser(username,"CLIENT", email, passwordEncoder().encode(password));
+    }
+}

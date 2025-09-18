@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public final class Cita {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -40,7 +41,6 @@ public final class Cita {
         this.fecha_inicio = fechaInicio;
         this.confirmada = false;
         this.pendiente = false;
-        this.id = 4;
     }
     public Cita(){}
 }

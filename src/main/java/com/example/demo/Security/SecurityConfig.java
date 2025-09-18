@@ -29,16 +29,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/home").permitAll()
-                .requestMatchers("/login").permitAll()
-                .requestMatchers("/signup").permitAll()
-                .requestMatchers(String.valueOf(PathRequest.toStaticResources().atCommonLocations())).permitAll()
-                .anyRequest().permitAll());
+                .requestMatchers("/home", "/login", "/signup","/catalogo", "/images/**").permitAll()
+                .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/images/**").permitAll()
+                        .anyRequest().authenticated()
+                );
         http.httpBasic(basic -> basic.disable());
         http.formLogin(form -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        .failureForwardUrl("/login")
+                        .loginProcessingUrl("/login/process")
+                        .failureUrl("/login/wrong")
+                        .defaultSuccessUrl("/admin")
                         .permitAll()
                                                                     );
         return http.build();
