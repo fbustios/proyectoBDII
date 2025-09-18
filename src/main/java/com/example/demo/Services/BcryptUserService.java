@@ -1,7 +1,6 @@
 package com.example.demo.Services;
 
-import com.example.demo.Models.Cita;
-import com.example.demo.Models.User;
+
 import com.example.demo.Repositories.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -45,7 +45,7 @@ public final class AdminController {
 
     @PostMapping("/admin/resolver")
     public String resolveAppointment(@RequestParam(name = "cita_id") int cita_id, @RequestParam(name = "action") boolean action){
-        citaService.resolveAppointment(action);
+        citaService.resolveAppointment(cita_id, action);
         return "redirect:/admin/solicitudes";
     }
 

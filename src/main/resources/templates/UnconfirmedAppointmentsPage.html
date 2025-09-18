@@ -49,7 +49,7 @@
                     </form>
 
                     <!-- Botón Rechazar -->
-                    <form th:action="@{/citas/resolver}" method="post" onsubmit="event.preventDefault(); confirmReject(this);">
+                    <form th:action="@{/admin/resolver}" method="post" onsubmit="event.preventDefault(); confirmReject(this);">
                         <input type="hidden" name="citaId" th:value="${cita.id}" />
                         <input type="hidden" name="action" th:value="false" />
                         <button type="submit" class="w-full px-4 py-2 bg-red-400 text-white rounded-lg hover:bg-red-500 transition">

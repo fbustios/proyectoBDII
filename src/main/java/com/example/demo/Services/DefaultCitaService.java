@@ -19,7 +19,7 @@ public class DefaultCitaService implements CitaService{
     }
 
     @Override
-    public void resolveAppointment(boolean action) {
+    public void resolveAppointment(int cita_id, boolean action) {
 
     }
 
