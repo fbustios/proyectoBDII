@@ -9,17 +9,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class BcryptUserService implements UserService{
     UserRepository userRepo;
+    PasswordEncoder passwordEncoder;
 
-    BcryptUserService(UserRepository userRepo){
+    BcryptUserService(UserRepository userRepo, PasswordEncoder passwordEncoder){
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
-    PasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     public Integer createUser(String username, String email, String password) {
-        return userRepo.createUser(username,"CLIENT", email, passwordEncoder().encode(password));
+        return userRepo.createUser(username,"CLIENT", email, passwordEncoder.encode(password));
     }
 }
