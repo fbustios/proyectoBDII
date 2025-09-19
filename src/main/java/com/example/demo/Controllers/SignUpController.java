@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public final class SignUpController {
@@ -38,20 +39,18 @@ public final class SignUpController {
     }
 
     @PostMapping("/signup")
-    public String registerUser(@Valid @ModelAttribute SignUpDTO signUpDTO, BindingResult bindingResult) {
+    public String registerUser(final @Valid @ModelAttribute SignUpDTO signUpDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
 
         if (!signUpDTO.getPassword().equals(signUpDTO.getConfirmPassword())) {
             bindingResult.rejectValue("confirmPassword", "error.confirmPassword", "Las contraseñas no coinciden");
         }
-        if (bindingResult.hasErrors()) {
-            return "redirect:/signup";
-        }
 
-        if(userService.createUser(signUpDTO.getUsername(),signUpDTO.getEmail(),signUpDTO.getPassword()) == 1){
-            System.out.println("bien");
-            return "redirect:/home";
-        }
+        int exito = userService.createUser(signUpDTO.getUsername(),signUpDTO.getEmail(),signUpDTO.getPassword());
 
-        return "redirect:/signup";
+        if(exito == 1) redirectAttributes.addFlashAttribute("msgSuccess","Usuario creado correctamente");
+
+        if(bindingResult.hasErrors() || exito == 0) redirectAttributes.addFlashAttribute("msgError","No se pudo crear la cita");
+
+        return "redirect:/home";
     }
 }

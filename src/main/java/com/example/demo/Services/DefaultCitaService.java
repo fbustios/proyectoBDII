@@ -2,8 +2,11 @@ package com.example.demo.Services;
 
 import com.example.demo.Models.Cita;
 import com.example.demo.Models.Dia;
+import com.example.demo.Repositories.CitaManagementRepository;
+import com.example.demo.Repositories.CitaQueryRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
 import java.time.Year;
@@ -12,30 +15,33 @@ import java.util.List;
 
 @Service
 public class DefaultCitaService implements CitaService{
-    CitaRepository citaRepo;
+    CitaManagementRepository managementRepo;
+    CitaQueryRepository queryRepo;
 
-    DefaultCitaService(final CitaRepository citaRepo){
-        this.citaRepo = citaRepo;
+    DefaultCitaService(final CitaManagementRepository mRepo, final CitaQueryRepository qRepo){
+        this.queryRepo = qRepo;
+        this.managementRepo= mRepo;
     }
 
     @Override
-    public void resolveAppointment(int cita_id, boolean action) {
-
+    public int resolveAppointment(int cita_id, boolean action) {
+        if(action) return managementRepo.resolveAppointment(cita_id,1);
+        else return managementRepo.resolveAppointment(cita_id,0);
     }
 
     @Override
     public List<Cita> getAvailableAppointments() {
-        return citaRepo.getFreeAppointments();
+        return queryRepo.getFreeAppointments();
     }
 
     @Override
     public List<Cita> getToDoAppointments() {
-        return citaRepo.getToDoAppointments();
+        return queryRepo.getToDoAppointments();
     }
 
     @Override
     public List<Cita> getUnresolvedAppointments() {
-        return citaRepo.getUnresolvedAppointments();
+        return queryRepo.getUnresolvedAppointments();
     }
 
     @Override
@@ -45,7 +51,7 @@ public class DefaultCitaService implements CitaService{
         int day = date.getDayOfMonth();
         LocalDateTime inicio = LocalDateTime.of(year,month,day,0,0,0);
         LocalDateTime fin = LocalDateTime.of(year,month,day,23,59,55);
-        return citaRepo.findByDate(inicio, fin);
+        return queryRepo.findByDate(inicio, fin);
     }
 
     @Override
@@ -66,20 +72,20 @@ public class DefaultCitaService implements CitaService{
 
     @Override
     @Transactional
-    public void bookAppointment(final String username, final int service_id, final int date_id) {
-        System.out.println(username + service_id + date_id);
+    public int bookAppointment(final String username, final int service_id, final int date_id, MultipartFile file) {
+        return managementRepo.bookAppointment(username,service_id,date_id,"ubi");
     }
 
 
     @Override
     @Transactional
-    public void createAppointment(final LocalDateTime fechaInicio, final LocalDateTime fechaFin) {
+    public int createAppointment(final LocalDateTime fechaInicio, final LocalDateTime fechaFin) {
+        return managementRepo.createAppointment(fechaInicio, fechaFin);
+    }
 
-        if(fechaInicio.isAfter(fechaFin)){
-            System.out.println("hola");
-            return;
-        }
-        if(citaRepo.createAppointment(fechaInicio, fechaFin) == 1) System.out.println("bien");;
+    @Override
+    public int deleteAppointment(int cita_id) {
+        return managementRepo.deleteAppointment(cita_id);
     }
 
     @Override

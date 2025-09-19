@@ -23,6 +23,12 @@
 </header>
 
 <!-- Hero -->
+<div th:if="${msgSuccess}" class="bg-green-100 text-green-800 p-2 rounded mb-4">
+    <span th:text="${msgSuccess}"></span>
+</div>
+<div th:if="${msgError}" class="bg-red-100 text-red-800 p-2 rounded mb-4">
+    <span th:text="${msgError}"></span>
+</div>
 <section class="px-6 py-16 max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-10">
     <div class="flex-1">
         <h2 class="text-4xl md:text-5xl font-extrabold leading-tight">
@@ -49,6 +55,7 @@
             <button type="submit" class="px-8 py-3 rounded-lg bg-green-300 text-white font-medium">Visitar</button>
         </form>
     </div>
+
 </section>
 
 <!-- Galería -->
@@ -74,15 +81,6 @@
 
 
 
-<!-- Footer -->
-<footer class="py-8 bg-gray-100">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between">
-        <p class="text-sm">© <span th:text="${#dates.format(#dates.createNow(), 'yyyy')}">2025</span> Belleza Nails. Todos los derechos reservados.</p>
-        <div class="space-x-4 text-sm">
-            <a th:href="@{/terminos}">Términos</a>
-            <a th:href="@{/privacidad}">Privacidad</a>
-        </div>
-    </div>
-</footer>
+
 </body>
 </html>

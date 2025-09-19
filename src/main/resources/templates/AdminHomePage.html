@@ -11,28 +11,31 @@
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
 
-<!-- Navbar -->
+
 <header class="w-full px-6 py-5 flex items-center justify-between bg-white shadow">
     <h1 class="text-2xl font-bold tracking-wide">Aqua <span class="text-green-300">Nails Admin</span></h1>
     <nav class="space-x-6 text-sm font-medium">
-        <a href="/" class="hover:text-green-300">Inicio</a>
         <a href="/admin" class="hover:text-green-300">Panel</a>
-        <a href="/logout" class="hover:text-green-300">Salir</a>
+        <a href="/home" class="hover:text-green-300">Home</a>
     </nav>
 </header>
 
-<!-- Hero Panel -->
+<div th:if="${msgSuccess}" class="bg-green-100 text-green-800 p-2 rounded mb-4">
+    <span th:text="${msgSuccess}"></span>
+</div>
+<div th:if="${msgError}" class="bg-red-100 text-red-800 p-2 rounded mb-4">
+    <span th:text="${msgError}"></span>
+</div>
 <section class="px-6 py-16 max-w-6xl mx-auto flex flex-col items-center gap-10">
     <h2 class="text-4xl font-extrabold leading-tight text-center">
         Panel de <span class="text-green-300">Administrador</span>
     </h2>
     <p class="mt-4 text-gray-600 text-center max-w-xl">
         Gestiona las citas de los clientes de manera rápida y sencilla.
-        Aquí puedes agregar citas, ver las ya agendadas y confirmar las pendientes.
+        Aquí puedes agregar citas, eliminarlas, ver las ya agendadas y confirmar las pendientes.
     </p>
 
     <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
-        <!-- Agregar Cita -->
         <a href="/admin/agregarCitas" class="flex flex-col justify-center items-center p-6 bg-pink-500 text-white rounded-2xl shadow-lg hover:bg-pink-600 transition">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
@@ -61,6 +64,21 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
             </svg>
             <span class="text-lg font-semibold">Administar inventario</span>
+        </a>
+
+        <a href="/admin/eliminarCita" class="flex flex-col justify-center items-center p-6 bg-purple-300 text-white rounded-2xl shadow-lg hover:bg-purple-500 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4"/>
+            </svg>
+            <span class="text-lg font-semibold">Eliminar cita</span>
+        </a>
+        <a href="/admin/asignarInventario" class="flex flex-col justify-center items-center p-6 bg-brown-300 text-white rounded-2xl shadow-lg hover:bg-brown-400 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4"/>
+            </svg>
+            <span class="text-lg font-semibold">Asignar item a servicio</span>
         </a>
     </div>
 </section>

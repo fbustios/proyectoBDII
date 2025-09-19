@@ -38,8 +38,8 @@ public class SecurityConfig {
         http.formLogin(form -> form
                         .loginPage("/login")
                         .loginProcessingUrl("/login/process")
-                        .failureUrl("/login/wrong")
-                        .defaultSuccessUrl("/admin")
+                        .failureUrl("/login")
+                        .defaultSuccessUrl("/home")
                         .permitAll()
                                                                     );
         return http.build();

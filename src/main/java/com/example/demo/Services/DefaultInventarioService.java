@@ -10,35 +10,28 @@ import java.util.List;
 public class DefaultInventarioService implements InventarioService{
     InventarioRepository inventarioRepo;
 
-    DefaultInventarioService(InventarioRepository inventarioRepo){
+    DefaultInventarioService(InventarioRepository inventarioRepo) {
         this.inventarioRepo = inventarioRepo;
     }
     @Transactional
     @Override
-    public void addStock(final String producto, final int cantidad_ml) {
-            boolean alreadyExists = inventarioRepo.existsByProducto(producto);
-            if(!alreadyExists) {
-                Inventario item = new Inventario(producto,cantidad_ml);
-                inventarioRepo.save(item);
-            }
+    public int addStock(final String producto, final int cantidad_ml) {
+        return inventarioRepo.addStock(producto, cantidad_ml);
     }
     @Transactional
     @Override
-    public void deleteStock(final int item_id) {
-        inventarioRepo.deleteById(item_id);
+    public int deleteStock(final int item_id) {
+        return inventarioRepo.deleteStock(item_id);
     }
 
     @Override
-    public void updateStock(final int item_id, final int cantidad) {
-
+    public int updateStock(final int item_id, final int cantidad) {
+        return inventarioRepo.updateStock(item_id, cantidad);
     }
 
     @Override
     public List<Inventario> listStock() {
-        return inventarioRepo.findAll();
+        return inventarioRepo.listStock();
     }
 
-    private void notifyMissingStock(){
-
-    }
 }

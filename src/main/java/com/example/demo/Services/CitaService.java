@@ -1,6 +1,7 @@
 package com.example.demo.Services;
 import com.example.demo.Models.Cita;
 import com.example.demo.Models.Dia;
+import org.springframework.web.multipart.MultipartFile;
 
 
 import java.time.LocalDateTime;
@@ -14,8 +15,9 @@ public interface CitaService {
     Dia[] getDaysAssignedWithDates();
 
     //separar
-    void resolveAppointment(boolean action);
-    void bookAppointment(String username,int service_id, int date_id);
-    void createAppointment(final LocalDateTime fechaInicio, final LocalDateTime fechaFin);
+    int resolveAppointment(int cita_id, boolean action);
+    int bookAppointment(String username, int service_id, int date_id, MultipartFile file);
+    int createAppointment(final LocalDateTime fechaInicio, final LocalDateTime fechaFin);
+    int deleteAppointment(final int cita_id);
     void updateAppointmentDate();
 }

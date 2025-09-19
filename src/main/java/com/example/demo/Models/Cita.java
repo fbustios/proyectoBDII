@@ -27,6 +27,10 @@ public final class Cita {
     @JoinColumn(name = "usuario_id")
     private User usuario;
 
+    @ManyToOne
+    @JoinColumn(name = "servicio_id")
+    private Servicio servicio;
+
     @Column
     private String imagen_url;
 
@@ -35,6 +39,9 @@ public final class Cita {
 
     @Column(name = "pendiente")
     private boolean pendiente;
+
+    @Column(name = "notificacion")
+    private String notificacion;
 
     public Cita(final LocalDateTime fechaInicio, final LocalDateTime fechaFin){
         this.fecha_fin = fechaFin;
